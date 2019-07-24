@@ -23,30 +23,26 @@ namespace COMP123_S2019_Lesson11C
         {
             try
             {
-                Debug.WriteLine("Loading Student from File");
-                StreamReader inputStream = new StreamReader("Students.txt");
-
-                Program.student.id = int.Parse(inputStream.ReadLine());
-                Program.student.StudentID = inputStream.ReadLine();
-                Program.student.FirstName = inputStream.ReadLine();
-                Program.student.LastName = inputStream.ReadLine();
-                inputStream.Close();
+                using (StreamReader inputStream = new StreamReader(File.Open("Student.txt", FileMode.Open)))
+                {
+                    Program.student.id = int.Parse(inputStream.ReadLine());
+                    Program.student.StudentID = inputStream.ReadLine();
+                    Program.student.FirstName = inputStream.ReadLine();
+                    Program.student.LastName = inputStream.ReadLine();
+                    inputStream.Close();
+                    inputStream.Dispose();
+                }
             }
-            catch (Exception exception)
+            catch (IOException exception)
             {
 
-                Debug.WriteLine(exception.Message);
+                Debug.WriteLine("ERROR: " + exception.Message);
             }
 
-
-
-            Debug.WriteLine("Output to Labels from Student");
             IDDataLabel.Text = Program.student.id.ToString();
             StudentIDDataLabel.Text = Program.student.StudentID;
             FirstNameDataLabel.Text = Program.student.FirstName;
             LastNameDataLabel.Text = Program.student.LastName;
-
-            
         }
 
         private void BackButton_Click(object sender, EventArgs e)

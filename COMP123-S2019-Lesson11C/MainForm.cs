@@ -97,14 +97,15 @@ namespace COMP123_S2019_Lesson11C
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StreamWriter outputStream = new StreamWriter("Student.txt");
-
-            outputStream.WriteLine(Program.student.id);
-            outputStream.WriteLine(Program.student.StudentID);
-            outputStream.WriteLine(Program.student.FirstName);
-            outputStream.WriteLine(Program.student.LastName);
-
-            outputStream.Close();
+            using (StreamWriter outputStream = new StreamWriter("Student.txt"))
+            {
+                outputStream.WriteLine(Program.student.id);
+                outputStream.WriteLine(Program.student.StudentID);
+                outputStream.WriteLine(Program.student.FirstName);
+                outputStream.WriteLine(Program.student.LastName);
+                outputStream.Close();
+                outputStream.Dispose();
+            }
         }
     }
 }
