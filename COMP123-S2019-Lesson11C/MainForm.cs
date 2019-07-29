@@ -97,15 +97,37 @@ namespace COMP123_S2019_Lesson11C
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (StreamWriter outputStream = new StreamWriter("Student.txt"))
+            // configure the file dialog
+            StudentSaveFileDialog.FileName = "Student.txt";
+            StudentSaveFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            StudentSaveFileDialog.Filter = "Text Files (*.txt)|*.txt| All Files (*.*)|*.*";
+
+            // open the file dialog
+            var result = StudentSaveFileDialog.ShowDialog();
+            if(result != DialogResult.Cancel)
             {
-                outputStream.WriteLine(Program.student.id);
-                outputStream.WriteLine(Program.student.StudentID);
-                outputStream.WriteLine(Program.student.FirstName);
-                outputStream.WriteLine(Program.student.LastName);
-                outputStream.Close();
-                outputStream.Dispose();
+                // open the stream for writing
+                using (StreamWriter outputStream = new StreamWriter(
+                    File.Open(StudentSaveFileDialog.FileName, FileMode.Create)))
+                {
+                    // write content - string type - to the file
+                    outputStream.WriteLine(Program.student.id.ToString());
+                    outputStream.WriteLine(Program.student.StudentID);
+                    outputStream.WriteLine(Program.student.FirstName);
+                    outputStream.WriteLine(Program.student.LastName);
+
+                    // cleanup
+                    outputStream.Close();
+                    outputStream.Dispose();
+
+                    // give feedback to the user that the file has been saved
+                    // this is a "modal" form
+                    MessageBox.Show("File Saved...", "Saving File...",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+
+           
         }
     }
 }

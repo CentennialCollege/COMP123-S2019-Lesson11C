@@ -23,12 +23,17 @@ namespace COMP123_S2019_Lesson11C
         {
             try
             {
-                using (StreamReader inputStream = new StreamReader(File.Open("Student.txt", FileMode.Open)))
+                // Open the  streawm for reading
+                using (StreamReader inputStream = new StreamReader(
+                    File.Open("Student.txt", FileMode.Open)))
                 {
+                    // read from the file
                     Program.student.id = int.Parse(inputStream.ReadLine());
                     Program.student.StudentID = inputStream.ReadLine();
                     Program.student.FirstName = inputStream.ReadLine();
                     Program.student.LastName = inputStream.ReadLine();
+
+                    // cleanup
                     inputStream.Close();
                     inputStream.Dispose();
                 }
@@ -37,6 +42,9 @@ namespace COMP123_S2019_Lesson11C
             {
 
                 Debug.WriteLine("ERROR: " + exception.Message);
+
+                MessageBox.Show("ERROR" + exception.Message, "ERROR",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             IDDataLabel.Text = Program.student.id.ToString();

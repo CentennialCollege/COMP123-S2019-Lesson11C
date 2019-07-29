@@ -55,6 +55,8 @@
             this.studentTableTableAdapter = new COMP123_S2019_Lesson11C.SectionCDatabaseDataSetTableAdapters.StudentTableTableAdapter();
             this.NextButton = new System.Windows.Forms.Button();
             this.SelectionLabel = new System.Windows.Forms.Label();
+            this.StudenOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.StudentSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.MainMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentDataGridView)).BeginInit();
@@ -277,6 +279,10 @@
             this.SelectionLabel.TabIndex = 4;
             this.SelectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // StudenOpenFileDialog
+            // 
+            this.StudenOpenFileDialog.FileName = "openFileDialog1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(23F, 46F);
@@ -334,6 +340,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.Label SelectionLabel;
+        private System.Windows.Forms.OpenFileDialog StudenOpenFileDialog;
+        private System.Windows.Forms.SaveFileDialog StudentSaveFileDialog;
     }
 }
 
