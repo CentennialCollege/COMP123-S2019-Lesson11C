@@ -55,7 +55,7 @@
             this.studentTableTableAdapter = new COMP123_S2019_Lesson11C.SectionCDatabaseDataSetTableAdapters.StudentTableTableAdapter();
             this.NextButton = new System.Windows.Forms.Button();
             this.SelectionLabel = new System.Windows.Forms.Label();
-            this.StudenOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.StudentOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.StudentSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.MainMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -94,13 +94,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(205, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(249, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -108,19 +109,19 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(205, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(249, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(205, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -161,6 +162,7 @@
             this.openToolStripButton.Name = "openToolStripButton";
             this.openToolStripButton.Size = new System.Drawing.Size(28, 28);
             this.openToolStripButton.Text = "&Open";
+            this.openToolStripButton.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripButton
             // 
@@ -279,9 +281,9 @@
             this.SelectionLabel.TabIndex = 4;
             this.SelectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // StudenOpenFileDialog
+            // StudentOpenFileDialog
             // 
-            this.StudenOpenFileDialog.FileName = "openFileDialog1";
+            this.StudentOpenFileDialog.FileName = "openFileDialog1";
             // 
             // MainForm
             // 
@@ -340,7 +342,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.Label SelectionLabel;
-        private System.Windows.Forms.OpenFileDialog StudenOpenFileDialog;
+        private System.Windows.Forms.OpenFileDialog StudentOpenFileDialog;
         private System.Windows.Forms.SaveFileDialog StudentSaveFileDialog;
     }
 }

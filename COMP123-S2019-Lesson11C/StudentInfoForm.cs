@@ -21,32 +21,6 @@ namespace COMP123_S2019_Lesson11C
 
         private void StudentInfoForm_Activate(object sender, EventArgs e)
         {
-            try
-            {
-                // Open the  streawm for reading
-                using (StreamReader inputStream = new StreamReader(
-                    File.Open("Student.txt", FileMode.Open)))
-                {
-                    // read from the file
-                    Program.student.id = int.Parse(inputStream.ReadLine());
-                    Program.student.StudentID = inputStream.ReadLine();
-                    Program.student.FirstName = inputStream.ReadLine();
-                    Program.student.LastName = inputStream.ReadLine();
-
-                    // cleanup
-                    inputStream.Close();
-                    inputStream.Dispose();
-                }
-            }
-            catch (IOException exception)
-            {
-
-                Debug.WriteLine("ERROR: " + exception.Message);
-
-                MessageBox.Show("ERROR" + exception.Message, "ERROR",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
             IDDataLabel.Text = Program.student.id.ToString();
             StudentIDDataLabel.Text = Program.student.StudentID;
             FirstNameDataLabel.Text = Program.student.FirstName;

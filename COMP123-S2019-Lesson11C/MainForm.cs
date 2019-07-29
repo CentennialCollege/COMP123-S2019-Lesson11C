@@ -129,5 +129,46 @@ namespace COMP123_S2019_Lesson11C
 
            
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // configure the file dialog
+            StudentOpenFileDialog.FileName = "Student.txt";
+            StudentOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            StudentOpenFileDialog.Filter = "Text Files (*.txt)|*.txt| All Files (*.*)|*.*";
+
+            // open the file dialog
+            var result = StudentOpenFileDialog.ShowDialog();
+            if(result != DialogResult.Cancel)
+            {
+                try
+                {
+                    // Open the  streawm for reading
+                    using (StreamReader inputStream = new StreamReader(
+                        File.Open(StudentOpenFileDialog.FileName, FileMode.Open)))
+                    {
+                        // read from the file
+                        Program.student.id = int.Parse(inputStream.ReadLine());
+                        Program.student.StudentID = inputStream.ReadLine();
+                        Program.student.FirstName = inputStream.ReadLine();
+                        Program.student.LastName = inputStream.ReadLine();
+
+                        // cleanup
+                        inputStream.Close();
+                        inputStream.Dispose();
+                    }
+
+                    NextButton_Click(sender, e);
+                }
+                catch (IOException exception)
+                {
+
+                    Debug.WriteLine("ERROR: " + exception.Message);
+
+                    MessageBox.Show("ERROR" + exception.Message, "ERROR",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
