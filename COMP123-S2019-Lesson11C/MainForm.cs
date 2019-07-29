@@ -165,8 +165,89 @@ namespace COMP123_S2019_Lesson11C
 
                     Debug.WriteLine("ERROR: " + exception.Message);
 
-                    MessageBox.Show("ERROR" + exception.Message, "ERROR",
+                    MessageBox.Show("ERROR: " + exception.Message, "ERROR",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch(FormatException exception)
+                {
+                    Debug.WriteLine("ERROR: " + exception.Message);
+
+                    MessageBox.Show("ERROR: " + exception.Message + "\n\nPlease select the appropriate file type", "ERROR",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void openBinaryFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // configure the file dialog
+            StudentOpenFileDialog.FileName = "Student.dat";
+            StudentOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            StudentOpenFileDialog.Filter = "Binary Files (*.dat)|*.dat| All Files (*.*)|*.*";
+
+            // open the file dialog
+            var result = StudentOpenFileDialog.ShowDialog();
+            if (result != DialogResult.Cancel)
+            {
+                try
+                {
+                    // Open the  streawm for reading
+                    using (BinaryReader inputStream = new BinaryReader(
+                        File.Open(StudentOpenFileDialog.FileName, FileMode.Open)))
+                    {
+                        // read from the file
+                        Program.student.id = int.Parse(inputStream.ReadString());
+                        Program.student.StudentID = inputStream.ReadString();
+                        Program.student.FirstName = inputStream.ReadString();
+                        Program.student.LastName = inputStream.ReadString();
+
+                        // cleanup
+                        inputStream.Close();
+                        inputStream.Dispose();
+                    }
+
+                    NextButton_Click(sender, e);
+                }
+                catch (IOException exception)
+                {
+                    Debug.WriteLine("ERROR: " + exception.Message);
+
+                    MessageBox.Show("ERROR: " + exception.Message, "ERROR",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void saveBinaryFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // configure the file dialog
+            StudentSaveFileDialog.FileName = "Student.dat";
+            StudentSaveFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            StudentSaveFileDialog.Filter = "Binary Files (*.dat)|*.dat| All Files (*.*)|*.*";
+
+            // open the file dialog
+            var result = StudentSaveFileDialog.ShowDialog();
+            if (result != DialogResult.Cancel)
+            {
+                // open the stream for writing
+                using (BinaryWriter outputStream = new BinaryWriter(
+                    File.Open(StudentSaveFileDialog.FileName, FileMode.Create)))
+                {
+                    // write content - string type - to the file
+                    outputStream.Write(Program.student.id.ToString());
+                    outputStream.Write(Program.student.StudentID);
+                    outputStream.Write(Program.student.FirstName);
+                    outputStream.Write(Program.student.LastName);
+
+                    // cleanup
+                    outputStream.Flush();
+                    outputStream.Close();
+                    outputStream.Dispose();
+
+                    // give feedback to the user that the file has been saved
+                    // this is a "modal" form
+                    MessageBox.Show("Binary File Saved...", "Saving Binary File...",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
